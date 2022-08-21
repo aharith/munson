@@ -15,12 +15,18 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ComponentsModule } from './components/components.module';
+import { AuthService } from './services/auth/auth.service';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
+import { ToastrModule } from 'ngx-toastr';
+import { AppointmentFormComponent } from './pages/appointment-form/appointment-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    AppointmentFormComponent
   ],
   imports: [
     BrowserModule,
@@ -29,10 +35,12 @@ import { ComponentsModule } from './components/components.module';
     HttpClientModule,
     ComponentsModule,
     NgbModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    ToastrModule.forRoot(),
     RouterModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
